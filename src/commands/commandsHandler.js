@@ -36,7 +36,10 @@ const getMessage = require('../message')
 distube
     .on("playSong", (queue, song) => queue.textChannel.send(
         `**Now Playing** \`${song.name}\` - \`${song.formattedDuration}\`\n`
-    ))
+    ).then(msg => {
+        setTimeout(() => msg.delete(), 10000)
+      })
+      .catch(console.error))
     .on("addList", (queue, playlist) => queue.textChannel.send(
         // playlist.songs.length doesn't appear to work :c 
         `Added \`${playlist.name}\` playlist to the queue!`
