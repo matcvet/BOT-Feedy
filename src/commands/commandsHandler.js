@@ -19,13 +19,18 @@ const distube = new DisTube.default(client, {
     plugins: [new SpotifyPlugin()]
 })
 
-const play = require("./play")
-const queue = require("./queue")
-const skip = require("./skip")
-const getMessage = require("../../message")
-const stop = require('./stopQueue')
-const shuffle = require('./shuffle')
-const help = require('./help')
+//All the commands the bot has
+const play = require("./music_commands/play")
+const queue = require("./music_commands/queue")
+const skip = require("./music_commands/skip")
+const stop = require('./music_commands/stop')
+const shuffle = require('./music_commands/shuffle')
+const animal = require('./other_commands/animals')
+const roll = require('./other_commands/roll')
+const weather = require('./other_commands/weather')
+const zdr = require('./other_commands/zdr')
+const help = require('./other_commands/help')
+const getMessage = require('../message')
 
 //Events for when a command is given for music
 distube
@@ -51,11 +56,19 @@ module.exports = msg => {
             skip(distube, msg)
         else if (message.commandName == 'queue' || message.commandName == 'q')
             queue(distube, msg)
-        else if (message.commandName == 'clear')
+        else if (message.commandName == 'stop')
             stop(distube, msg)
         else if (message.commandName == 'shuffle')
             shuffle(distube, msg)
         else if (message.commandName == 'help')
             help(msg)
+        else if (message.commandName == 'doggo')
+            animal(msg)
+        else if (message.commandName == 'roll')
+            roll(msg)
+        else if (message.commandName == 'weather')
+            weather(msg, message.argument)
+        else if (message.commandName == 'zdr')
+            zdr(msg)
     }
 }

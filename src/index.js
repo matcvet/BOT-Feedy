@@ -1,18 +1,16 @@
-const Discord = require('discord.js')
+const { Client } = require('discord.js')
 require('dotenv').config({ path: '../.env' })
-const client = new Discord.Client({
+const client = new Client({
     intents: [
         'GUILDS',
         'GUILD_MESSAGES',
         'GUILD_VOICE_STATES',
     ]
 });
-//const commandHandler = require('./commands')
-const musicCommandsHandler = require('./commands/music_commands/musicCommandsHandler')
+const commandHandler = require('./commands/commandsHandler')
 
 //Taking in a message from user
-client.on("messageCreate", musicCommandsHandler)
-//client.on('messageCreate', commandHandler)
+client.on('messageCreate', commandHandler)
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN
@@ -20,8 +18,8 @@ const token = process.env.BOT_TOKEN
 //ready message for bot
 client.on('ready', () => {
     console.log("I am ready and online.")
-    client.user.setPresence({ 
-        activities: [{ name: '..help' }] 
+    client.user.setPresence({
+        activities: [{ name: '..help' }]
     });
 })
 

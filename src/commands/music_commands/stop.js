@@ -9,5 +9,5 @@ module.exports = async (bot, msg) => {
 
     bot.stop(msg)
 
-    return msg.channel.send('Queue stopped')
+    return msg.channel.send('Queue stopped! ✅')
 }

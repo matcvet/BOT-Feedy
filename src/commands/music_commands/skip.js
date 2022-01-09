@@ -9,6 +9,10 @@ module.exports = async (bot, msg) => {
     
     if (!queue.autoplay && queue.songs.length <= 1) {
         bot.stop(msg)
+        msg.channel.send('Skipped! ✅')
     }
-    else bot.skip(msg)
+    else {
+        bot.skip(msg)
+        msg.channel.send('Skipped! ✅')
+    }
 }
