@@ -1,13 +1,11 @@
-
 const { MessageActionRow, MessageButton } = require('discord.js')
-const message = require('../../message')
 
 module.exports = async (bot, msg) => {
 
     const queue = bot.getQueue(msg.guild.id)
 
     if (!msg.member.voice.channel)
-        return msg.channel.send('You must be in a voice channel to use commands.')
+        return msg.channel.send('Ne si vo kanalot baki 😔.')
 
     if (!queue)
         return msg.channel.send('No queue available.')
@@ -30,7 +28,7 @@ module.exports = async (bot, msg) => {
 
     const queueList = embedGenerator(queue)
 
-    const queueMessage = await msg.channel.send({ content: `${queueList[currentPage]} \n **page: ${currentPage+1}/${queueList.length}**`, components: [row] })
+    const queueMessage = await msg.channel.send({ content: `**${queue.songs.length} songs in queue** \n ${queueList[currentPage]} \n **page: ${currentPage+1}/${queueList.length}**`, components: [row] })
 
     const filter = button => button.customId === 'previous' && button.customId === 'next';
     const collector = queueMessage.createMessageComponentCollector(filter);

@@ -30,7 +30,8 @@ const roll = require('./other_commands/roll')
 const weather = require('./other_commands/weather')
 const zdr = require('./other_commands/zdr')
 const help = require('./other_commands/help')
-const getMessage = require('../message')
+const getMessage = require('../message');
+const jump = require('./music_commands/jump');
 
 //Events for when a command is given for music
 distube
@@ -38,14 +39,10 @@ distube
         `**Now Playing** \`${song.name}\` - \`${song.formattedDuration}\`\n`
     ).then(msg => {
         setTimeout(() => msg.delete(), 10000)
-      })
-      .catch(console.error))
-    .on("addList", (queue, playlist) => queue.textChannel.send(
-        // playlist.songs.length doesn't appear to work :c 
-        `Added \`${playlist.name}\` playlist to the queue!`
-    ))
+    }).catch(console.error))
+    .on("addList", (queue, playlist) => queue.textChannel.send(`Added \`${playlist.name}\` playlist to the queue!`))
     .on("addSong", (queue, song) => queue.textChannel.send(
-        `Added ${song.name} - \`${song.formattedDuration}\` to the queue.`
+        `Added ${song.name} - \`${song.formattedDuration}\` to the queue. **${queue.songs.length} songs in queue.**`
     ))
     .on("empty", queue => queue.textChannel.send("Channel is empty. Leaving the channel"))
 
@@ -73,5 +70,7 @@ module.exports = msg => {
             weather(msg, message.argument)
         else if (message.commandName == 'zdr')
             zdr(msg)
+        else if (message.commandName == 'jump')
+            jump(distube, msg, message.argument)
     }
 }
