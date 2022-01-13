@@ -11,12 +11,13 @@ const client = new Client({
 // Create a new DisTube
 const distube = new DisTube.default(client, {
     searchSongs: 1,
-    searchCooldown: 30,
+    searchCooldown: 1,
     leaveOnEmpty: true,
     emptyCooldown: 30,
-    leaveOnFinish: true,
+    leaveOnFinish: false,
     leaveOnStop: false,
-    plugins: [new SpotifyPlugin()]
+    plugins: [new SpotifyPlugin()],
+    updateYouTubeDL: false
 })
 
 //All the commands the bot has
