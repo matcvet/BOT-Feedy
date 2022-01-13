@@ -13,7 +13,6 @@ const distube = new DisTube.default(client, {
     searchSongs: 1,
     searchCooldown: 1,
     leaveOnEmpty: true,
-    emptyCooldown: 30,
     leaveOnFinish: false,
     leaveOnStop: false,
     plugins: [new SpotifyPlugin()],
