@@ -1,10 +1,14 @@
-module.exports = (bot, msg, args) => {
+module.exports = {
+    name: 'play',
+    alias: 'p',
+    description: 'play song/playlist',
+    async execute(bot, msg, args) {
+        if (args === '')
+            return msg.channel.send('Please enter a song name/link')
 
-    if(args === '') 
-        return msg.channel.send('Please enter a song name/link')
+        if (!msg.member.voice.channel)
+            return msg.channel.send('Ne si vo kanalot baki 😔.')
 
-    if (!msg.member.voice.channel)
-        return msg.channel.send('Ne si vo kanalot baki 😔.')
-
-    bot.play(msg, args.join(' '));
+        bot.play(msg, args.join(' '));
+    }
 }

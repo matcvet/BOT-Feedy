@@ -1,13 +1,17 @@
-module.exports = async (bot, msg, args) => {
-    const queue = bot.getQueue(msg)
+module.exports = {
+    name: 'shuffle',
+    description: 'shuffle',
+    async execute(bot, msg, args) {
+        const queue = bot.getQueue(msg)
 
-    if (!msg.member.voice.channel)
-        return msg.channel.send('Ne si vo kanalot baki 😔.')
+        if (!msg.member.voice.channel)
+            return msg.channel.send('Ne si vo kanalot baki 😔.')
 
-    if (!queue)
-        return msg.channels.send('Nothing to skip.')
+        if (!queue)
+            return msg.channels.send('Nothing to skip.')
 
-    await queue.shuffle();
+        await queue.shuffle();
 
-    return msg.channel.send(`Queue shuffled **${queue.songs.length}** song(s) ! ✅`);
+        return msg.channel.send(`Queue shuffled **${queue.songs.length}** song(s) ! ✅`);
+    }
 }

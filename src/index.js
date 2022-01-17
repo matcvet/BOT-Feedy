@@ -1,27 +1,37 @@
-const { Client } = require('discord.js')
-require('dotenv').config({ path: '../.env' })
-const client = new Client({
+const Discord = require('discord.js');
+require('dotenv').config({ path: '../.env' });
+const client = new Discord.Client({
     intents: [
         'GUILDS',
         'GUILD_MESSAGES',
         'GUILD_VOICE_STATES',
     ]
 });
-const commandHandler = require('./commands/commandsHandler')
 
-//Taking in a message from user
-client.on('messageCreate', commandHandler)
+// Create a new DisTube instance
+const DisTube = require('distube');
+const { SpotifyPlugin } = require("@distube/spotify");
+const distube = new DisTube.default(client, {
+    searchSongs: 1,
+    searchCooldown: 1,
+    plugins: [new SpotifyPlugin()],
+    updateYouTubeDL: false
+});
+
+client.commands = new Discord.Collection();
+client.events = new Discord.Collection();
+
+['command_handler', 'event_handler'].forEach(handler => {
+    require(`./handlers/${handler}`)(client, Discord, distube);
+})
 
 require('dotenv').config();
-const token = process.env.BOT_TOKEN
+const token = process.env.BOT_TOKEN;
 
-//ready message for bot
-client.on('ready', () => {
-    console.log("I am ready and online.")
+//Acquiring the bot password
+client.login(token).then(() => {
+    // client.user is now defined
     client.user.setPresence({
         activities: [{ name: '..help' }]
     });
-})
-
-//Acquiring the bot password
-client.login(token)
+});
