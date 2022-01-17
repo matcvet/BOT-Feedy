@@ -1,6 +1,6 @@
 module.exports = {
     name: 'shuffle',
-    description: 'shuffle',
+    description: 'shuffle the song queue',
     async execute(bot, msg, args) {
         const queue = bot.getQueue(msg)
 

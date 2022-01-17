@@ -1,5 +1,6 @@
 module.exports = {
     name: 'skip',
+    description: 'Skip the current song in queue',
     async execute(bot, msg) {
         const queue = bot.getQueue(msg)
 

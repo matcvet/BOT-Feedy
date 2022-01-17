@@ -2,7 +2,7 @@ module.exports = {
     name: 'play',
     alias: 'p',
     description: 'play song/playlist',
-    async execute(bot, msg, args) {
+    execute(bot, msg, args) {   
         if (args === '')
             return msg.channel.send('Please enter a song name/link')
 

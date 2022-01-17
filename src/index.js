@@ -15,7 +15,9 @@ const distube = new DisTube.default(client, {
     searchSongs: 1,
     searchCooldown: 1,
     plugins: [new SpotifyPlugin()],
-    updateYouTubeDL: false
+    updateYouTubeDL: false,
+    leaveOnFinish: false,
+    leaveOnStop: false
 });
 
 client.commands = new Discord.Collection();

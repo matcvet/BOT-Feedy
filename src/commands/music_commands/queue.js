@@ -5,7 +5,6 @@ module.exports = {
     alias: 'q',
     description: 'Show queue if available',
     async execute(bot, msg) {
-        console.log(msg);
         const queue = bot.getQueue(msg.guild.id);
 
         if (!msg.member.voice.channel)
@@ -28,9 +27,26 @@ module.exports = {
                     .setStyle('PRIMARY'),
             )
 
+        const generateQueue = queue => {
+            let chunks = []
+            for (let i = 0; i < queue.songs.length; i += 10) {
+                const chunk = queue.songs
+                    .map(
+                        (song, id) =>
+                            `**${id ? id + 1 : 'Playing'}**. ${song.name} - \`${song.formattedDuration
+                            }\``,
+                    )
+                    .slice(i, i + 10)
+                    .join('\n')
+                chunks.push(chunk)
+            }
+
+            return chunks
+        }
+        
         let currentPage = 0;
 
-        const queueList = embedGenerator(queue);
+        const queueList = generateQueue(queue);
 
         const queueMessage = await msg.channel.send({ content: `**${queue.songs.length} songs in queue** \n ${queueList[currentPage]} \n **page: ${currentPage + 1}/${queueList.length}**`, components: [row] });
 
@@ -52,22 +68,5 @@ module.exports = {
         })
 
         collector.on('end', collected => console.log(`Collected ${collected.size} items`));
-
-        const embedGenerator = queue => {
-            let chunks = []
-            for (let i = 0; i < queue.songs.length; i += 10) {
-                const chunk = queue.songs
-                    .map(
-                        (song, id) =>
-                            `**${id ? id + 1 : 'Playing'}**. ${song.name} - \`${song.formattedDuration
-                            }\``,
-                    )
-                    .slice(i, i + 10)
-                    .join('\n')
-                chunks.push(chunk)
-            }
-
-            return chunks
-        }
     }
 }

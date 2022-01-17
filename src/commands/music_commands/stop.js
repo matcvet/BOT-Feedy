@@ -1,5 +1,6 @@
 module.exports = {
     name: 'stop',
+    description: 'Stop the queue.',
     async execute(bot, msg) {
         const queue = bot.getQueue(msg)
 
