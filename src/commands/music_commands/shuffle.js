@@ -5,7 +5,7 @@ module.exports = {
         const queue = bot.getQueue(msg)
 
         if (!msg.member.voice.channel)
-            return msg.channel.send('Ne si vo kanalot baki 😔.')
+            return msg.channel.send('Youre not in the channel. 😔.');
 
         if (!queue)
             return msg.channels.send('Nothing to skip.')

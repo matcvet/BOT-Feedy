@@ -6,5 +6,8 @@ module.exports = (client, Discord, distube, message) => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
     const command = client.commands.get(cmd) || client.commands.find(a => a.alias && a.alias.includes(cmd));
-    if(command) command.execute(distube, message, args, Discord);
+    if(command) 
+        command.execute(distube, message, args, Discord);
+    else
+        message.channel.send('No postoi komandava.');
 }

@@ -8,7 +8,7 @@ module.exports = {
         const queue = bot.getQueue(msg.guild.id);
 
         if (!msg.member.voice.channel)
-            return msg.channel.send('Ne si vo kanalot baki 😔.');
+            return msg.channel.send('Youre not in the channel. 😔.');
 
         if (!queue)
             return msg.channel.send('No queue available.');
@@ -16,33 +16,16 @@ module.exports = {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setCustomId('previous')
+                    .setCustomId('Previous')
                     .setLabel('previous')
                     .setStyle('PRIMARY'),
             )
             .addComponents(
                 new MessageButton()
-                    .setCustomId('next')
+                    .setCustomId('Next')
                     .setLabel('next')
                     .setStyle('PRIMARY'),
             )
-
-        const generateQueue = queue => {
-            let chunks = []
-            for (let i = 0; i < queue.songs.length; i += 10) {
-                const chunk = queue.songs
-                    .map(
-                        (song, id) =>
-                            `**${id ? id + 1 : 'Playing'}**. ${song.name} - \`${song.formattedDuration
-                            }\``,
-                    )
-                    .slice(i, i + 10)
-                    .join('\n')
-                chunks.push(chunk)
-            }
-
-            return chunks
-        }
         
         let currentPage = 0;
 
@@ -69,4 +52,21 @@ module.exports = {
 
         collector.on('end', collected => console.log(`Collected ${collected.size} items`));
     }
+}
+
+const generateQueue = queue => {
+    let chunks = []
+    for (let i = 0; i < queue.songs.length; i += 10) {
+        const chunk = queue.songs
+            .map(
+                (song, id) =>
+                    `**${id ? id + 1 : 'Playing'}**. ${song.name} - \`${song.formattedDuration
+                    }\``,
+            )
+            .slice(i, i + 10)
+            .join('\n')
+        chunks.push(chunk)
+    }
+
+    return chunks
 }
