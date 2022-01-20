@@ -4,11 +4,11 @@ module.exports = {
     name: 'queue',
     alias: 'q',
     description: 'Show queue if available',
-    async execute(bot, msg) {
+    async execute(msg, args, Discord, bot) {
         const queue = bot.getQueue(msg.guild.id);
 
         if (!msg.member.voice.channel)
-            return msg.channel.send('Youre not in the channel. 😔.');
+            return msg.channel.send('Youre not in the channel 😔');
 
         if (!queue)
             return msg.channel.send('No queue available.');
@@ -60,7 +60,7 @@ const generateQueue = queue => {
         const chunk = queue.songs
             .map(
                 (song, id) =>
-                    `**${id ? id + 1 : 'Playing'}**. ${song.name} - \`${song.formattedDuration
+                    `**${id ? id + 1 : 'Currently Playing'}**. ${song.name} - \`${song.formattedDuration
                     }\``,
             )
             .slice(i, i + 10)

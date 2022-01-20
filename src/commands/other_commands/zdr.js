@@ -1,9 +1,9 @@
 module.exports  = {
     name: 'zdr',
     description: 'Hello commands',
-    async execute(client, msg) {
+    async execute(msg, args, Discord, bot) {
         if (!msg.member.voice.channel)
-            return msg.channel.send('Ne si vo kanalot baki 😔.');
+            return msg.channel.send('Youre not in the channel 😔');
 
         msg.channel.send('Zdravo machor. 😉');   
     }

@@ -1,13 +1,15 @@
 module.exports = {
     name: 'seek',
     description: 'forward given songs in seconds.',
-    execute(bot, msg, args) {
-
-        if (!msg.member.voice.channel)
-            return msg.channel.send('Youre not in the channel. 😔.');
-
+    execute(msg, args, Discord, bot) {
         const queue = bot.getQueue(msg.guild.id);
         const seconds = Number(args[0]);
+
+        if (!msg.member.voice.channel)
+            return msg.channel.send('Youre not in the channel 😔');
+
+        if (!queue)
+            return msg.channel.send('No song playing.');
 
         if(isNaN(seconds))
             return msg.channel.send('Enter seconds to seek to.');

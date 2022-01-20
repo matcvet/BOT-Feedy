@@ -1,9 +1,18 @@
 module.exports = {
     name: 'roll',
-    async execute(client, msg) {
+    async execute(msg, args, Discord, bot) {
         if (!msg.member.voice.channel)
-            return msg.channel.send('Ne si vo kanalot baki 😔.');
-        
-            msg.channel.send(`${msg.author}` + ' rolled : ' + Math.round(Math.random() * 100) + '!');
-    } 
+            return msg.channel.send('Youre not in the channel 😔');
+
+        const maxRoll = Number(args[0]);
+
+        if (isNaN(maxRoll))
+            msg.channel.send(`${msg.author} rolled : ${getRandomNumber(1, 100)}!`);
+        else
+            msg.channel.send(`${msg.author} rolled : ${getRandomNumber(1, maxRoll)}!`);
+    }
+}
+
+const getRandomNumber = (min, max) => {
+    return Math.round(Math.random() * (max-min+1) + min); 
 }

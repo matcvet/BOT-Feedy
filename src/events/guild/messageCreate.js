@@ -7,7 +7,7 @@ module.exports = (client, Discord, distube, message) => {
     const cmd = args.shift().toLowerCase();
     const command = client.commands.get(cmd) || client.commands.find(a => a.alias && a.alias.includes(cmd));
     if(command) 
-        command.execute(distube, message, args, Discord);
+        command.execute(message, args, Discord, distube);
     else
-        message.channel.send('No postoi komandava.');
+        message.channel.send('Command doesnt exist.');
 }
