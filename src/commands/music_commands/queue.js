@@ -16,14 +16,14 @@ module.exports = {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setCustomId('Previous')
-                    .setLabel('previous')
+                    .setCustomId('previous')
+                    .setLabel('Previous')
                     .setStyle('PRIMARY'),
             )
             .addComponents(
                 new MessageButton()
-                    .setCustomId('Next')
-                    .setLabel('next')
+                    .setCustomId('next')
+                    .setLabel('Next')
                     .setStyle('PRIMARY'),
             )
         
@@ -56,11 +56,11 @@ module.exports = {
 
 const generateQueue = queue => {
     let chunks = []
-    for (let i = 0; i < queue.songs.length; i += 10) {
+    for (let i = 1; i <= queue.songs.length; i += 10) {
         const chunk = queue.songs
             .map(
                 (song, id) =>
-                    `**${id ? id + 1 : 'Currently Playing'}**. ${song.name} - \`${song.formattedDuration
+                    `**${id}**. ${song.name} - \`${song.formattedDuration
                     }\``,
             )
             .slice(i, i + 10)

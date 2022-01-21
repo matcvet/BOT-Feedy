@@ -25,7 +25,7 @@ client.events = new Discord.Collection();
 
 ['command_handler', 'event_handler'].forEach(handler => {
     require(`./handlers/${handler}`)(client, Discord, distube);
-})
+});
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;

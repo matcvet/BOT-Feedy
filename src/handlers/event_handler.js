@@ -7,7 +7,7 @@ module.exports = (client, Discord, distube) => {
             const event = require(`../events/${dirs}/${file}`);
             const eventName = file.split('.')[0];
             client.on(eventName, event.bind(null, client, Discord, distube));
-            distube.on(eventName, event.bind(null, client, Discord));
+            distube.on(eventName, event.bind(null, client, Discord, distube));
         }
     }
 
