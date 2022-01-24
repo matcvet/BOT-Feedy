@@ -11,5 +11,5 @@ module.exports = (client, Discord, distube) => {
         }
     }
 
-    ['client', 'guild'].forEach(e => loadDir(e));
+    ['client', 'guild', 'music'].forEach(e => loadDir(e));
 }

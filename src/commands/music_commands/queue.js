@@ -1,5 +1,24 @@
 const { MessageActionRow, MessageButton } = require('discord.js');
 
+const generateQueue = queue => {
+
+    let chunks = [];
+
+    for (let i = 1; i <= queue.songs.length; i += 10) {
+        const chunk = queue.songs
+            .map(
+                (song, id) =>
+                    `**${id}**. ${song.name} - \`${song.formattedDuration
+                    }\``,
+            )
+            .slice(i, i + 10)
+            .join('\n')
+        chunks.push(chunk)
+    }
+
+    return chunks;
+}
+
 module.exports = {
     name: 'queue',
     alias: 'q',
@@ -52,21 +71,4 @@ module.exports = {
 
         collector.on('end', collected => console.log(`Collected ${collected.size} items`));
     }
-}
-
-const generateQueue = queue => {
-    let chunks = []
-    for (let i = 1; i <= queue.songs.length; i += 10) {
-        const chunk = queue.songs
-            .map(
-                (song, id) =>
-                    `**${id}**. ${song.name} - \`${song.formattedDuration
-                    }\``,
-            )
-            .slice(i, i + 10)
-            .join('\n')
-        chunks.push(chunk)
-    }
-
-    return chunks
 }
