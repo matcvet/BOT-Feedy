@@ -7,6 +7,7 @@ module.exports = (client, Discord) => {
             const command = require(`../commands/${dirs}/${file}`);
             if(command.name) {
                 client.commands.set(command.name, command);
+                console.log(command.alias);
             } else {
                 continue;
             }

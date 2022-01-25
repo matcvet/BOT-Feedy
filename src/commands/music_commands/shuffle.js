@@ -7,6 +7,9 @@ module.exports = {
         if (!msg.member.voice.channel)
             return msg.channel.send('Youre not in the channel 😔');
 
+        if (msg.guild.me.voice.channel && msg.member.voice.channel.id !== msg.guild.me.voice.channel.id)
+            return msg.channel.send("You must be in the same voice channel to use commands.");
+
         if (!queue)
             return msg.channels.send('Nothing to skip.')
 

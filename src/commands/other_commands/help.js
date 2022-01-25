@@ -9,7 +9,7 @@ module.exports = {
         .setTitle('Help command')
         .addFields(
             { name: 'Random commands:', value: `\`help, doggo, roll, weather, zdr\`` },
-            { name: 'Music commands:', value: `\`play, clear, queue, shuffle, skip, jump, seek, np(nowplaying), move\`` },
+            { name: 'Music commands:', value: `\`play, clear, queue, shuffle, skip, jump, seek, nowplaying, move\`` },
         )
         msg.channel.send({ embeds: [weatherEmbed] });
     }
