@@ -8,16 +8,27 @@ const client = new Discord.Client({
     ]
 });
 
+let spotifyOptions = {
+    parallel: true,
+    emitEventsAfterFetching: true,
+    api: {
+        clientId: process.env.CLIENT_ID_SPOTIFY,
+        clientSecret: process.env.CLIENT_SECRET_SPOTIFY,
+    }
+};
+
 // Create a new DisTube instance
 const DisTube = require('distube');
 const { SpotifyPlugin } = require("@distube/spotify");
 const distube = new DisTube.default(client, {
     searchSongs: 1,
     searchCooldown: 1,
-    plugins: [new SpotifyPlugin()],
+    plugins: [new SpotifyPlugin(spotifyOptions)],
     updateYouTubeDL: false,
     leaveOnFinish: false,
-    leaveOnStop: false
+    leaveOnStop: false,
+    emitAddSongWhenCreatingQueue: false,
+    emitAddSongWhenCreatingQueue: false
 });
 
 client.commands = new Discord.Collection();
