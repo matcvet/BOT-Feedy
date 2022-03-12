@@ -6,9 +6,6 @@ module.exports = {
 
         const maxRoll = Number(args[0]);
 
-        if (maxRoll < 1)
-            return msg.channel.send('Jadi kur.');
-
         if (isNaN(maxRoll))
             msg.channel.send(`${msg.author} rolled : ${getRandomNumber(1, 100)}!`);
         else

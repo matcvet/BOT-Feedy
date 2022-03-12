@@ -6,14 +6,15 @@ module.exports = {
     async execute(msg, args, Discord, bot) {
         const cityName = args
         if (cityName === undefined) {
-            msg.channel.send('Vnesi validen grad.')
+            msg.channel.send('Insert a valid city.')
             return
         }
         if (!msg.member.voice.channel)
             return msg.channel.send('Youre not in the channel 😔');
 
         const getWeatherApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName +
-            '&appid=' + process.env.WEATHER_TOKEN + '&units=metric'
+            '&appid=' + process.env.WEATHER_TOKEN + '&units=metric';
+
         fetch(getWeatherApi)
             .then(response => response.json())
             .then(json => {
