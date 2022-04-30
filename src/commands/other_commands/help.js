@@ -8,8 +8,8 @@ module.exports = {
             .setColor('#0099ff')
             .setTitle('Help command')
             .addFields(
-                { name: 'Random commands:', value: `\`help, doggo, roll, weather, greet\`` },
-                { name: 'Music commands:', value: `\`play, clear, queue, shuffle, skip, jump, seek, nowplaying, move\`` },
+                { name: 'Random commands:', value: `\`help, roll, weather, greet, disconnect\`` },
+                { name: 'Music commands:', value: `\`play, clear, queue, shuffle, skip, jump, seek, nowplaying, move, resume, pause\`` },
             )
         msg.channel.send({ embeds: [weatherEmbed] });
     }

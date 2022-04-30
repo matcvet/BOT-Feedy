@@ -1,8 +1,8 @@
 module.exports = {
-    name: 'clear',
-    description: 'Clear the queue.',
-    async execute(msg, args, Discord, bot) {
-        const queue = bot.getQueue(msg);
+    name: 'resume',
+    description: 'resume song/playlist',
+    execute(msg, args, Discord, bot) {
+        const queue = bot.getQueue(msg.guild.id);
 
         if (!msg.member.voice.channel)
             return msg.channel.send("You have to join a voice channel first. ❌ ");
@@ -13,8 +13,11 @@ module.exports = {
         if (!queue)
             return msg.channel.send("Bot is currently not playing. ❌ ");
 
-        bot.stop(msg);
+        if (queue.playing)
+            return msg.channel.send('Music already playing.');
 
-        return msg.channel.send("Queue cleared! ✅");
+        bot.resume(queue);
+
+        msg.channel.send("Music resumed ✅");
     }
 }

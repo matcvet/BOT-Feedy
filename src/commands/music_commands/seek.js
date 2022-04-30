@@ -6,19 +6,19 @@ module.exports = {
         const seconds = Number(args[0]);
 
         if (!msg.member.voice.channel)
-            return msg.channel.send('Youre not in the channel 😔');
-        
+            return msg.channel.send("You have to join a voice channel first. ❌ ");
+
         if (msg.guild.me.voice.channel && msg.member.voice.channel.id !== msg.guild.me.voice.channel.id)
-            return msg.channel.send("You must be in the same voice channel to use commands.");
-        
+            return msg.channel.send("You must be in the same voice channel to use commands. ❌ ");
+
         if (!queue)
-            return msg.channel.send('No song playing.');
+            return msg.channel.send("Bot is currently not playing. ❌ ");
 
-        if(isNaN(seconds))
+        if (isNaN(seconds))
             return msg.channel.send('Enter seconds to seek to.');
-        
 
-            
+
+
         const skipTo = formatTime(seconds);
         bot.seek(msg, seconds);
         msg.channel.send(`Seeked to \`${skipTo} / ${queue.songs[0].formattedDuration}\` ✅`);

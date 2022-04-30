@@ -5,13 +5,13 @@ module.exports = {
         const queue = bot.getQueue(msg)
 
         if (!msg.member.voice.channel)
-            return msg.channel.send('Youre not in the channel 😔');
+            return msg.channel.send("You have to join a voice channel first. ❌ ");
 
         if (msg.guild.me.voice.channel && msg.member.voice.channel.id !== msg.guild.me.voice.channel.id)
-            return msg.channel.send("You must be in the same voice channel to use commands.");
+            return msg.channel.send("You must be in the same voice channel to use commands. ❌ ");
 
         if (!queue)
-            return msg.channels.send('Nothing to skip.')
+            return msg.channel.send("Bot is currently not playing. ❌ ");
 
         await queue.shuffle();
 
