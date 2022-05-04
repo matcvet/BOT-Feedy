@@ -1,15 +1,16 @@
-const Discord = require('discord.js');
-require('dotenv').config({ path: '../.env' });
+const Discord = require("discord.js");
+require("dotenv").config({ path: "../.env" });
 const client = new Discord.Client({
     intents: [
-        'GUILDS',
-        'GUILD_MESSAGES',
-        'GUILD_VOICE_STATES',
+        "GUILDS",
+        "GUILD_MESSAGES",
+        "GUILD_VOICE_STATES",
+        "GUILD_MEMBERS"
     ]
 });
 
 // Create a new DisTube instance
-const DisTube = require('distube');
+const DisTube = require("distube");
 const { SpotifyPlugin } = require("@distube/spotify");
 const distube = new DisTube.default(client, {
     searchSongs: 1,
@@ -31,17 +32,17 @@ const distube = new DisTube.default(client, {
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
-['command_handler', 'event_handler'].forEach(handler => {
+["command_handler", "event_handler"].forEach(handler => {
     require(`./handlers/${handler}`)(client, Discord, distube);
 });
 
-require('dotenv').config();
+require("dotenv").config();
 const token = process.env.BOT_TOKEN;
 
 //Acquiring the bot password
 client.login(token).then(() => {
     // client.user is now defined
     client.user.setPresence({
-        activities: [{ name: '`help' }]
+        activities: [{ name: "`help" }]
     });
 });

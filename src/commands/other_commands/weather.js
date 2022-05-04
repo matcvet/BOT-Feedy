@@ -9,8 +9,12 @@ module.exports = {
             msg.channel.send('Insert a valid city.')
             return
         }
+
         if (!msg.member.voice.channel)
-            return msg.channel.send('Youre not in the channel 😔');
+            return msg.channel.send("You have to join a voice channel first. ❌ ");
+
+        if (msg.guild.me.voice.channel && msg.member.voice.channel.id !== msg.guild.me.voice.channel.id)
+            return msg.channel.send("You must be in the same voice channel to use commands. ❌ ");
 
         const getWeatherApi = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName +
             '&appid=' + process.env.WEATHER_TOKEN + '&units=metric';

@@ -14,6 +14,7 @@ module.exports = {
                 if (!user.voice.channel) {
                     msg.channel.send("Bot is currently not playing. ❌");
                 } else {
+                    console.log(user)
                     user.voice.disconnect()
                     msg.channel.send("Bot disconnected. ✅");
                 }
