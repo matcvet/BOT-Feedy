@@ -17,6 +17,7 @@ module.exports = {
                 let cntr = 0;
                 for (let key of filteredMembers.keys()) {
                     if (cntr++ === index) {
+                        msg.channel.send("<@" + filteredMembers.get(key).user.id + "> died! 💀💀");
                         filteredMembers.get(key).voice.disconnect();
                     }
                 }

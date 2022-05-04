@@ -22,10 +22,10 @@ const distube = new DisTube.default(client, {
     plugins: [new SpotifyPlugin({
         parallel: true,
         emitEventsAfterFetching: false,
-        // api: {
-        //   clientId: process.env.CLIENT_ID_SPOTIFY,
-        //   clientSecret: process.env.CLIENT_SECRET_SPOTIFY,
-        // },
+        api: {
+            clientId: process.env.CLIENT_ID_SPOTIFY,
+            clientSecret: process.env.CLIENT_SECRET_SPOTIFY,
+        },
     })]
 });
 
@@ -43,6 +43,6 @@ const token = process.env.BOT_TOKEN;
 client.login(token).then(() => {
     // client.user is now defined
     client.user.setPresence({
-        activities: [{ name: "`help" }]
+        activities: [{ name: "..help" }]
     });
 });
