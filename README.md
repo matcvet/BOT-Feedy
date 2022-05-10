@@ -12,7 +12,7 @@ BOT Feedy is a Discord bot built with [Discord.js](https://discord.js.org/#/) & 
 - Create a local repository on your machine
 - Clone the project https://github.com/matcvet/BOT-Feedy.git
 - Use <b>npm install</b> command inside project folder
-- rename <b>.env.example</b> to <b>.env</b> and fill the required values
+- Create <b>config.js</b> file and copy properties from <b>example.config.js</b> file
 - Use <b>npm run start</b> to start the bot
 
 
