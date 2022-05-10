@@ -45,6 +45,6 @@ client.events = new Discord.Collection();
 client.login(BOT_TOKEN).then(() => {
     // client.user is now defined
     client.user.setPresence({
-        activities: [{ name: `"${PREFIX}help"` }],
+        activities: [{ name: `${PREFIX}help` }],
     });
 });
