@@ -18,7 +18,7 @@ module.exports = {
                 const filteredMembers = fetchedMembers.filter((m) => msg.member.voice.channel === m.voice.channel);
                 const index = Math.floor(Math.random() * filteredMembers.size);
                 let cntr = 0;
-                filteredMembers.keys().foreach((key) => {
+                filteredMembers.keys().forEach((key) => {
                     if (cntr++ === index) {
                         msg.channel.send(`<@${filteredMembers.get(key).user.id}> died! 💀💀`);
                         filteredMembers.get(key).voice.disconnect();
