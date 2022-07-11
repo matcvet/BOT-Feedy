@@ -1,6 +1,3 @@
-/* eslint-disable new-cap */
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
 const Discord = require("discord.js");
 
 const client = new Discord.Client({

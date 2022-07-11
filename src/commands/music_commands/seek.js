@@ -4,7 +4,6 @@ const formatTime = (seconds) => {
     const s = Math.round(seconds % 60);
     return [
         h,
-        // eslint-disable-next-line no-nested-ternary
         m > 9 ? m : (h ? `0${m}` : m || "0"),
         s > 9 ? s : `0${s}`,
     ].filter(Boolean).join(":");
@@ -21,7 +20,6 @@ module.exports = {
             return msg.channel.send("You have to join a voice channel first. ❌ ");
         }
 
-        // eslint-disable-next-line max-len
         if (msg.guild.me.voice.channel && msg.member.voice.channel.id !== msg.guild.me.voice.channel.id) {
             return msg.channel.send("You must be in the same voice channel to use commands. ❌ ");
         }
