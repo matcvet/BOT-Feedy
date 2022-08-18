@@ -14,8 +14,4 @@ module.exports = (client, discord, distube) => {
 
         client.channels.cache.get(errChannel).send({ embeds: [errEmbed] });
     });
-
-    process.on("uncaughtException", (e) => {
-        console.error(e);
-    });
 };
