@@ -34,7 +34,7 @@ const distube = new DisTube.default(client, {
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
-["command_handler", "event_handler"].forEach((handler) => {
+["command_handler", "event_handler", "error_handler"].forEach((handler) => {
     require(`./src/handlers/${handler}`)(client, Discord, distube);
 });
 
