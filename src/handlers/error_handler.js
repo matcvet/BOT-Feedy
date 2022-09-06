@@ -1,17 +1,8 @@
-const { ERR_CHANNEL_ID } = require("../../config");
+const logger = require("../../logger");
 
 module.exports = (client, discord, distube) => {
-
-    const errChannel = ERR_CHANNEL_ID;
-
-    process.on("unhandledRejection", (reason) => {
-        console.error(reason);
-
-        const errEmbed = new discord.MessageEmbed()
-            .setColor("#ff0000")
-            .setTitle("⚠ ERROR")
-            .setDescription("```" + reason + "``` ");
-
-        client.channels.cache.get(errChannel).send({ embeds: [errEmbed] });
+    process.on("unhandledRejection", (error) => {
+        // console.error(error);
+        logger.botLogger.log("error", error.stack);
     });
 };
