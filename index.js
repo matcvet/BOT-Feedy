@@ -7,7 +7,7 @@ const client = new Discord.Client({
         "GUILD_VOICE_STATES",
         "GUILD_MEMBERS",
     ],
-});
+}); 
 
 // Create a new DisTube instance
 const DisTube = require("distube");

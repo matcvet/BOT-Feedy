@@ -17,7 +17,7 @@ module.exports = {
         }
 
         bot.stop(msg);
-
+        
         msg.channel.send("Queue cleared! ✅");
     },
 };
