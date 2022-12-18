@@ -7,6 +7,8 @@ module.exports = (client) => {
             const command = require(`../commands/${dirs}/${file}`);
             if (command.name) {
                 client.commands.set(command.name, command);
+            } else {
+                console.log("[WARNING] Failed to set a command in commands collection.");
             }
         });
     };

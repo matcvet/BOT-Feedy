@@ -24,10 +24,10 @@ const distube = new DisTube.default(client, {
     plugins: [new SpotifyPlugin({
         parallel: true,
         emitEventsAfterFetching: false,
-        // api: {
-        //     clientId: CLIENT_ID_SPOTIFY,
-        //     clientSecret: CLIENT_SECRET_SPOTIFY,
-        // },
+        api: {
+            clientId: CLIENT_ID_SPOTIFY,
+            clientSecret: CLIENT_SECRET_SPOTIFY,
+        },
     })],
 });
 
